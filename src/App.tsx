@@ -1,15 +1,22 @@
-import React, {useState} from "react";
-import {DragDropContext, Draggable, DraggingStyle, Droppable, DropResult, NotDraggingStyle} from "react-beautiful-dnd";
+import React, { useState } from "react";
+import {
+  DragDropContext,
+  Draggable,
+  DraggingStyle,
+  Droppable,
+  DropResult,
+  NotDraggingStyle,
+} from "react-beautiful-dnd";
 
 // fake data generator
 const getItems = (count: number) =>
-  Array.from({length: count}, (v, k) => k).map(k => ({
+  Array.from({ length: count }, (v, k) => k).map((k) => ({
     id: `item-${k}`,
-    content: `item ${k}`
+    content: `item ${k}`,
   }));
 
 // a little function to help us with reordering the result
-const reorder = <T, >(list: T[], startIndex: number, endIndex: number) => {
+const reorder = <T,>(list: T[], startIndex: number, endIndex: number) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -19,27 +26,31 @@ const reorder = <T, >(list: T[], startIndex: number, endIndex: number) => {
 
 const grid = 4;
 
-const getItemStyle = (isDragging: boolean, draggableStyle: DraggingStyle | NotDraggingStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: "none",
-  adding: grid * 2,
-  margin: `0 0 ${grid}px 0`,
+const getItemStyle = (
+  isDragging: boolean,
+  draggableStyle: DraggingStyle | NotDraggingStyle
+) =>
+  ({
+    // some basic styles to make the items look a bit nicer
+    userSelect: "none",
+    adding: grid * 2,
+    margin: `0 0 ${grid}px 0`,
 
-  // change background colour if dragging
-  background: isDragging ? "lightgreen" : "grey",
+    // change background colour if dragging
+    background: isDragging ? "lightgreen" : "grey",
 
-  // styles we need to apply on draggables
-  ...draggableStyle
-} as const);
+    // styles we need to apply on draggables
+    ...draggableStyle,
+  } as const);
 
 const getListStyle = (isDraggingOver: boolean) => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
   padding: grid,
-  width: 250
+  width: 250,
 });
 
 function App() {
-  const [items, setItems] = useState(getItems(10))
+  const [items, setItems] = useState(getItems(10));
 
   const onDragEnd = (result: DropResult) => {
     // dropped outside the list
@@ -54,10 +65,11 @@ function App() {
     );
 
     setItems(newItems);
-  }
+  };
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <h1 style={{ color: "green", fontWeight: "bold" }}>Test</h1>
       <Droppable droppableId="droppable">
         {(provided, snapshot) => (
           <div
