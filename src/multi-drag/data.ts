@@ -27,11 +27,18 @@ const done: Column = {
   taskIds: [],
 };
 
+const another: Column = {
+  id: "another",
+  title: "Another",
+  taskIds: [],
+};
+
 const entities: Entities = {
-  columnOrder: [todo.id, done.id],
+  columnOrder: [todo.id, done.id, another.id],
   columns: {
     [todo.id]: todo,
     [done.id]: done,
+    [another.id]: another
   },
   tasks: taskMap,
 };

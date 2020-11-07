@@ -68,7 +68,7 @@ const Container = styled.div<{ isDragging: boolean } & GetBackgroundColorArgs>`
   ${(props) =>
     props.isDragging ? `box-shadow: 2px 2px 1px ${colors.N90};` : ""} ${(
     props
-  ) => (props.isGhosting ? "opacity: 0.8;" : "")}
+  ) => (props.isGhosting ? "opacity: 0.0;" : "")}
 
   /* needed for SelectionCount */
   position: relative;
